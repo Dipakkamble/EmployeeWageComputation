@@ -11,20 +11,27 @@ namespace EmployeeWageComputation
         
         static void Main(string[] args)
         {
-            int isPresent = 1;
+            const int FULL_TIME = 1;
+            const int EMP_RATE_PER_HR = 20;
+            int empHrs = 0, empWage = 0;
             Console.WriteLine("Welcome to employee wage computation");
 
-            //UC1-EmployeeAttendance
+            //UC2-CalculateDailyWage
             Random random = new Random();
             int empAttendance=random.Next(0,2); // 0 or 1 it will generate
-            if ( empAttendance == isPresent )
+            if ( empAttendance == FULL_TIME)
             {
                 Console.WriteLine("Employee is present");
+                empHrs = 8;
             }
             else 
             {
                 Console.WriteLine("Employee is absent");
+                empHrs = 0;
             }
+            empWage= empHrs*EMP_RATE_PER_HR;
+            //Console.WriteLine("Employee wage: " +empWage); old way 
+            Console.WriteLine("Employee Wage:{0}", empWage);  //new way
             Console.ReadLine();
         }
     }
