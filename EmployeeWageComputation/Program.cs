@@ -8,20 +8,26 @@ namespace EmployeeWageComputation
 {
     internal class Program
     {
+        public const int FULL_TIME = 1;
+        public const int PART_TIME = 2;
+        public const int EMP_RATE_PER_HR = 20;
+        public const int MAX_WORKING_DAYS = 20;
+        public const int MAX_WORKING_HRS = 100;
         
+
         static void Main(string[] args)
         {
-            const int FULL_TIME = 1;
-            const int PART_TIME = 2;
-            const int EMP_RATE_PER_HR = 20;
-            const int MAX_WORKING_DAYS = 20;
-            const int MAX_WORKING_HRS = 100;
-            int empHrs = 0, empWage = 0, day = 1, totalWage = 0, totalHrs= 0;
+            ComputeWage();
+            Console.ReadLine();
+        }
+        public static void ComputeWage() 
+        {
 
+            int empHrs = 0, empWage = 0, day = 1, totalWage = 0, totalHrs = 0;
             Console.WriteLine("Welcome to employee wage computation");
             //UC5-MonthEmpWage
             Random random = new Random();
-            while (day<= MAX_WORKING_DAYS && totalHrs <= MAX_WORKING_HRS)
+            while (day <= MAX_WORKING_DAYS && totalHrs <= MAX_WORKING_HRS)
             {
                 int empAttendance = random.Next(0, 3); // 0 or 1 or 2 it will generate
                 switch (empAttendance)
@@ -36,19 +42,19 @@ namespace EmployeeWageComputation
                         break;
                     default:
                         Console.WriteLine("\nEmployee is absent");
-                        empHrs= 0;
+                        empHrs = 0;
                         break;
                 }
                 empWage = empHrs * EMP_RATE_PER_HR;
                 //Console.WriteLine("Employee wage: " +empWage); old way 
-                Console.WriteLine("Day{0} Employee Wage:{1}",day, empWage);  //new way
+                Console.WriteLine("Day{0} Employee Wage:{1}", day, empWage);  //new way
                 //totalWage = totalWage + empWage;
-                totalWage+= empWage;
+                totalWage += empWage;
                 day++;
-                totalHrs+= empHrs;
+                totalHrs += empHrs;
             }
-            Console.WriteLine("Total Employee wage for {0} days:{1} and totalHrs:{2}", (day - 1),totalWage,totalHrs);
-            Console.ReadLine();
+            Console.WriteLine("Total Employee wage for {0} days:{1} and totalHrs:{2}", (day - 1), totalWage, totalHrs);
+
         }
     }
 }
