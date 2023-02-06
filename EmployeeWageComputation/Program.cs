@@ -8,53 +8,49 @@ namespace EmployeeWageComputation
 {
     internal class Program
     {
-        public const int FULL_TIME = 1;
-        public const int PART_TIME = 2;
-        public const int EMP_RATE_PER_HR = 20;
-        public const int MAX_WORKING_DAYS = 20;
-        public const int MAX_WORKING_HRS = 100;
-        
-
+        const int FULL_TIME = 1;
+        const int PART_TIME = 2;
+        //const int MAX_WORKING_DAYS = 20;
+        //const int MAX_WORKING_HRS = 100;
+        //const int EMP_RATE_PER_HR = 20;
         static void Main(string[] args)
         {
-            ComputeWage();
+            //Console.WriteLine("Welcome to Emplployee wage computation program");
+            ComputeWage("Deloitee", 25, 35, 30);
+            ComputeWage("Bridgelabz", 30, 25, 35);
+            ComputeWage("Wipro", 20, 15, 80);
             Console.ReadLine();
         }
-        public static void ComputeWage() 
+        public static void ComputeWage(string Company, int maxWorkingDays, int maxWorkingHrs, int empRatePerHrs)
         {
-
             int empHrs = 0, empWage = 0, day = 1, totalWage = 0, totalHrs = 0;
-            Console.WriteLine("Welcome to employee wage computation");
-            //UC5-MonthEmpWage
-            Random random = new Random();
-            while (day <= MAX_WORKING_DAYS && totalHrs <= MAX_WORKING_HRS)
+            Random myObj = new Random();
+            while (day <= maxWorkingDays && totalHrs <= maxWorkingHrs)
             {
-                int empAttendance = random.Next(0, 3); // 0 or 1 or 2 it will generate
-                switch (empAttendance)
+                int empAttendence = myObj.Next(0, 3); //0 or 1 or 2
+                switch (empAttendence)
                 {
                     case FULL_TIME:
-                        Console.WriteLine("\nFull time Employee is present");
+                        //Console.WriteLine("\nFull Employee is Present");
                         empHrs = 8;
                         break;
                     case PART_TIME:
-                        Console.WriteLine("\nPart time employee is present");
+                        //Console.WriteLine("\nPart Employee is Present");
                         empHrs = 4;
                         break;
                     default:
-                        Console.WriteLine("\nEmployee is absent");
+                        //Console.WriteLine("\nEmployee is Absent");
                         empHrs = 0;
                         break;
                 }
-                empWage = empHrs * EMP_RATE_PER_HR;
-                //Console.WriteLine("Employee wage: " +empWage); old way 
-                Console.WriteLine("Day{0} Employee Wage:{1}", day, empWage);  //new way
-                //totalWage = totalWage + empWage;
+                empWage = empHrs * empRatePerHrs;
+                //Console.WriteLine("Day {0} Employeewage: {1} totalHrs:{2}", day, empWage, totalHrs);
                 totalWage += empWage;
                 day++;
                 totalHrs += empHrs;
             }
-            Console.WriteLine("Total Employee wage for {0} days:{1} and totalHrs:{2}", (day - 1), totalWage, totalHrs);
-
+            Console.WriteLine("Total Employeewage for {3} {0} days: {1} and totalHrs:{2}", (day - 1), totalWage, totalHrs, Company);
         }
+
     }
 }
